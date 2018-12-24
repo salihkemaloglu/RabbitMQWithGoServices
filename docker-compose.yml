@@ -1,0 +1,20 @@
+version: '3'
+services:
+  api:
+    container_name: api
+    image: webapigo
+    ports:
+      - 8080:8080
+  ginkgo:
+    container_name: ginkgo
+    image: webapiginkgo    
+  test:
+    container_name: test
+    image: webapitestgo
+    depends_on:
+      - 'mongo'
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - 27100:27017
