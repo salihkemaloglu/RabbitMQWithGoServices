@@ -6,24 +6,15 @@ services:
     ports:
       - 8080:8080
     depends_on:
-      - rabbit
-    networks:
-      - localnet     
+      - rabbit   
   service:
     container_name: service
     image: servicego
     depends_on:
-      - rabbit
-    networks:
-      - localnet  
+      - rabbit  
   rabbit:
     image: rabbitmq:3.6.7-management
     container_name: rabbit
     ports:
       - 15672:15672
       - 5672:5672
-    networks:
-      - localnet
-networks:
-  localnet:   
-
