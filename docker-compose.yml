@@ -1,20 +1,29 @@
-version: '3'
+version: '2'
 services:
-  api:
-    container_name: api
-    image: webapigo
+  client:
+    container_name: client
+    image: clientgo
     ports:
       - 8080:8080
-  ginkgo:
-    container_name: ginkgo
-    image: webapiginkgo    
-  test:
-    container_name: test
-    image: webapitestgo
     depends_on:
-      - 'mongo'
-  mongo:
-    image: mongo:latest
-    container_name: mongo
+      - rabbit
+    networks:
+      - localnet     
+  service:
+    container_name: service
+    image: servicego
+    depends_on:
+      - rabbit
+    networks:
+      - localnet  
+  rabbit:
+    image: rabbitmq:3.6.7-management
+    container_name: rabbit
     ports:
-      - 27100:27017
+      - 15672:15672
+      - 5672:5672
+    networks:
+      - localnet
+networks:
+  localnet:   
+
