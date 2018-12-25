@@ -3,20 +3,20 @@ BLUE='\033[1;34m'
 GREEN='\033[0;32m'
 NC='\033[0m' # No Color
 
-echo -e "${BLUE}Open client folder${NC}"
-cd client
+echo -e "${BLUE}Open sender folder${NC}"
+cd sender
 
-echo -e "${GREEN}Build client  project...${NC}"
-docker build -t clientgo .
+echo -e "${GREEN}Build sender  project...${NC}"
+docker build -t sendergo .
 
 echo -e "${BLUE}Go back main folder${NC}"
 cd ..
 
-echo -e "${BLUE}Open service folder${NC}"
-cd service
+echo -e "${BLUE}Open consumer folder${NC}"
+cd consumer
 
-echo -e "${GREEN}Build service testing project...${NC}"
-docker build -t servicego .
+echo -e "${GREEN}Build consumer testing project...${NC}"
+docker build -t consumergo .
 
 echo -e "${BLUE}Go back main folder${NC}"
 cd ..

@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"time"
 
 	"github.com/streadway/amqp"
 )
@@ -12,7 +13,7 @@ func failOnError(err error, msg string) {
 	}
 }
 
-func main() {
+func LoadConfiguration() {
 	conn, err := amqp.Dial("amqp://guest:guest@rabbit:5672/")
 	failOnError(err, "Failed to connect to RabbitMQ")
 	defer conn.Close()
@@ -52,4 +53,9 @@ func main() {
 
 	log.Printf(" [*] Waiting for messages. To exit press CTRL+C")
 	<-forever
+}
+func main() {
+	time.Sleep(10 * time.Second)
+	log.Printf(" Waiting for RabbitMQ service is work")
+	LoadConfiguration()
 }

@@ -1,15 +1,15 @@
 version: '2'
 services:
-  client:
-    container_name: client
-    image: clientgo
+  sender:
+    container_name: sender
+    image: sendergo
     ports:
       - 8080:8080
     depends_on:
       - rabbit   
-  service:
-    container_name: service
-    image: servicego
+  consumer:
+    container_name: consumer
+    image: consumergo
     depends_on:
       - rabbit  
   rabbit:
